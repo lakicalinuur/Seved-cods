@@ -43,7 +43,7 @@ stt_settings_collection = db["stt_settings"]
 tokens_collection = db["tokens"]
 # ---------------------
 
-ASSEMBLYAI_API_KEY = "894ad2705ab54e33bb011a87b658ede2"
+ASSEMBLYAI_API_KEY = "91f15c103dbd4b859466a29ee849e3ef"
 
 # In-memory data (used for quick access, sync with DB on updates)
 in_memory_data = {
