@@ -986,7 +986,7 @@ async def process_stt_media(chat_id: int, user_id_for_settings: str, message_typ
                 import io
                 f = io.BytesIO(text.encode("utf-8"))
                 f.name = "transcript.txt"
-                target_bot.send_document(chat_id, f, caption="📄 Transcript (file):", reply_to_message_id=original_message_id)
+                target_bot.send_document(chat_id, f, caption="The transcription was too long to send normally, but it’s  a text file:", reply_to_message_id=original_message_id)
             increment_processing_count_in_memory(user_id_for_settings, "stt")
             status = "success"
         else:
