@@ -496,9 +496,9 @@ def start_handler(message):
         )
     else:
         welcome_message = (
-            f"""Send me text for audio 🎧 or
+            f"👋🏻 Hey there! Send me text for audio 🎧 or
 send me a video or audio for transcription ✍️.
-Pick your voice style & transcription language in ⚙️ Settings at the bottom left ⬇️."""
+Pick your voice style & transcription language in ⚙️ Settings at the bottom left ⬇️"
         )
         markup = InlineKeyboardMarkup(row_width=1)
         markup.add(
