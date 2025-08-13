@@ -453,8 +453,8 @@ def send_subscription_message(chat_id: int):
 def create_main_reply_keyboard():
     markup = ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
     markup.add(
-        KeyboardButton("🗣️ Text to voice"),
-        KeyboardButton("✍️ Voice to text"),
+        #KeyboardButton("🗣️ Text to voice"),
+        #KeyboardButton("✍️ Voice to text"),
         KeyboardButton("⚙️ Settings"),
         KeyboardButton("❓ Help")
     )
@@ -496,15 +496,9 @@ def start_handler(message):
         )
     else:
         welcome_message = (
-            f"🎙️ *AI Voice Studio*\n\n"
-            f"Hello *{user_first_name}* 👋\n\n"
-            "🚀 *Quick Start*\n"
-            "• 🗣️ *Text → Voice:* Set a voice in Settings, then send text to receive audio.\n"
-            "• ✍️ *Voice → Text:* Pick STT language, then send audio/video/file (≤20MB) to transcribe.\n\n"
-            "💡 *Tips*\n"
-            "• Use *Choose Voice* to pick a voice.\n"
-            "• Use *Pitch* and *Rate* to tune the output.\n\n"
-            "➕ Add to group: tap the button below to add this assistant to your chats."
+            f"""Send me text for audio 🎧 or
+send me a video or audio for transcription ✍️.
+Pick your voice style & transcription language in ⚙️ Settings at the bottom left ⬇️."""
         )
         markup = InlineKeyboardMarkup(row_width=1)
         markup.add(
@@ -529,7 +523,7 @@ def help_handler(message):
     user_pitch_input_mode[user_id] = None
     user_rate_input_mode[user_id] = None
     help_text = (
-        "📘 *How to use the AI Voice Studio*\n\n"
+        "❓ *How to use *\n\n"
         "1️⃣ *Text to Audio (TTS)*\n"
         "• Choose *Choose Voice* in Settings\n"
         "• Adjust *Pitch* and *Rate* if needed\n"
@@ -555,7 +549,7 @@ def privacy_notice_handler(message):
     user_rate_input_mode[user_id] = None
     privacy_text = (
         "🔐 *Privacy Notice*\n\n"
-        "If you have concerns about your data, contact the administrator: @user33230"
+        "not avlibale"
     )
     bot.send_message(message.chat.id, privacy_text, parse_mode="Markdown")
 
@@ -952,7 +946,7 @@ async def process_stt_media(chat_id: int, user_id_for_settings: str, message_typ
     processing_msg = None
     downloaded_file_path = None
     try:
-        processing_msg = target_bot.send_message(chat_id, "🔄 Processing your file. The transcription will be delivered here when ready.", reply_to_message_id=original_message_id)
+        processing_msg = target_bot.send_message(chat_id, "Processing...", reply_to_message_id=original_message_id)
         file_info = target_bot.get_file(file_id)
         if file_info.file_size > 20 * 1024 * 1024:
             target_bot.send_message(chat_id, "⚠️ File too large. Maximum allowed: 20MB.", reply_to_message_id=original_message_id)
@@ -1007,7 +1001,8 @@ async def process_stt_media(chat_id: int, user_id_for_settings: str, message_typ
         target_bot.send_message(chat_id, "❌ A network error occurred. Please try again.", reply_to_message_id=original_message_id)
     except Exception as e:
         logging.exception(f"Unhandled error during STT processing: {e}")
-        target_bot.send_message(chat_id, "❌ The file could not be processed. Ensure it's an audio/video file smaller than 20MB.", reply_to_message_id=original_message_id)
+        target_bot.send_message(chat_id, "
+ 😓I can’t transcribing files larger than 20 MB. Please send a smaller one.", reply_to_message_id=original_message_id)
     finally:
         if processing_msg:
             try:
@@ -1045,10 +1040,10 @@ def handle_stt_media_types_common(message, target_bot: telebot.TeleBot, user_id_
             target_bot.send_message(message.chat.id, "⚠️ I can only transcribe audio or video. Send a valid file.")
             return
     if not file_id:
-        target_bot.send_message(message.chat.id, "⚠️ Unsupported file type. Send audio, file, or video.")
+        target_bot.send_message(message.chat.id, "⚠️ Unsupported file type. Send audio, file, or video .")
         return
     if user_id_for_settings not in in_memory_data["stt_settings"]:
-        target_bot.send_message(message.chat.id, "Please choose transcription language first by clicking STT Lang or using /lang")
+        target_bot.send_message(message.chat.id, "Please choose transcription language first by clicking button STT Lang for button ⚙️ Settings at the bottom left or using /lang")
         return
     threading.Thread(
         target=lambda: asyncio.run(process_stt_media(message.chat.id, user_id_for_settings, message_type, file_id, target_bot, message.message_id))
