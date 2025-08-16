@@ -586,8 +586,8 @@ def start_handler(message):
         )
     else:
         welcome_message = (
-            "👋🏻 Hey there! Send me text for audio 🎧 or send me a video or audio for transcription ✍️.\n\n"
-            "Pick your voice style & transcription language in ⚙️ Settings at the bottom left ⬇️"
+            "👋🏻 Hey {user_first_name}! Send me text for audio OR send me a video or audio for transcription ✍️.\n\n"
+            "Pick your Settings tap ⚙️ Settings "
         )
         bot.send_message(
             message.chat.id,
