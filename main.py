@@ -586,7 +586,7 @@ def start_handler(message):
         )
     else:
         welcome_message = (
-            "👋🏻 Hey {user_first_name}! Send me text for audio OR send me a video or audio for transcription ✍️.\n\n"
+            "👋🏻 Salaam! Send me text for audio OR send me a video or audio for transcription ✍️.\n\n"
             "Pick your Settings tap ⚙️ Settings "
         )
         bot.send_message(
