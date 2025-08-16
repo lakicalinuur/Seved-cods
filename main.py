@@ -1272,7 +1272,7 @@ def callback_translate_to(call):
         bot.edit_message_text(
             chat_id=call.message.chat.id,
             message_id=call.message.message_id,
-            text=f"🔄 Translating to {lang_name}...\nPlease wait — processing long transcript."
+            text=f"🔄 Translating to {lang_name}..."
         )
     except Exception:
         bot.send_message(call.message.chat.id, f"Translating to {lang_name}...")
@@ -1315,7 +1315,7 @@ def callback_summarize_in(call):
         bot.edit_message_text(
             chat_id=call.message.chat.id,
             message_id=call.message.message_id,
-            text=f"🔄 Summarizing in {lang_name}...\nPlease wait — processing long transcript."
+            text=f"🔄 Summarizing in {lang_name}..."
         )
     except Exception:
         bot.send_message(call.message.chat.id, f"Summarizing in {lang_name}...")
