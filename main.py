@@ -24,7 +24,7 @@ logging.basicConfig(
 
 TOKEN = "7790991731:AAF4NHGm0BJCf08JTdBaUWKzwfs82_Y9Ecw"
 ADMIN_ID = 5978150981
-WEBHOOK_URL = "https://distant-issy-wwmahe-868dbbd7.koyeb.app/"
+WEBHOOK_URL = "https://seved-cods.onrender.com"
 REQUIRED_CHANNEL = "@guruubka_wasmada"
 
 bot = telebot.TeleBot(TOKEN, threaded=True)
