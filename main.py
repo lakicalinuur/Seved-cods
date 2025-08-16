@@ -1275,7 +1275,7 @@ def callback_translate_to(call):
             text=f"🔄 Translating to {lang_name}...\nPlease wait — processing long transcript."
         )
     except Exception:
-        bot.send_message(call.message.chat.id, f"🔄 Translating to {lang_name}... Please wait — processing long transcript.")
+        bot.send_message(call.message.chat.id, f"🔄 Translating to {lang_name}...")
     bot.answer_callback_query(call.id)
     
     def do_translate():
